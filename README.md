@@ -24,7 +24,8 @@ npm install
 npm run dev
 ```
 
-A projekt buildeléséhez futtasd a következőt:
+Egyszerű, statikus buildet készíthetsz az alábbi paranccsal. Ez a lépés nem
+használ külső csomagokat, csak átmásolja a forrásfájlokat a `dist` mappába:
 
 ```bash
 npm run build
