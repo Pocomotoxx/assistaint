@@ -24,6 +24,12 @@ npm install
 npm run dev
 ```
 
+A projekt buildeléséhez futtasd a következőt:
+
+```bash
+npm run build
+```
+
 ## Tesztkörnyezet
 
 Egyszerű unit tesztek a Node beépített `test` futtatójával készültek. A tesztek futtatásához:
@@ -48,7 +54,25 @@ Az `/api/extract` végponttal különböző forrásokból nyerhető ki szöveg:
 - `pdf`: PDF fájlok a szerveren
 - `doc`/`docx`: Word dokumentumok
 - `database`: SQLite adatbázis `knowledge` táblája
+- `GET /api/fetch?url=`: egyszerű proxy, amely visszaadja egy URL szöveges tartalmát
 
 Mindegyik hívás hitelesítést igényel, és a válasz a kinyert nyers szöveget tartalmazza.
 
 Ez csak egy minimális kezdeti verzió, a specifikációban szereplő további funkciók még fejlesztésre várnak.
+
+### Válaszstílus profilok
+
+Az alkalmazás 12 beépített stílust kínál, amelyek meghatározzák a chatbot hangvételét:
+
+- Jogi szaknyelv
+- Oktatói magyarázó
+- Tudományos
+- Startup pitch
+- Ügyfélszolgálati
+- Motivációs tréner
+- Politikai elemző
+- HR szakértő
+- Marketing szövegíró
+- Egészségügyi tanács
+- IT technikai support
+- Sporttanácsadó

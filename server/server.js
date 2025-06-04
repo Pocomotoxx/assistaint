@@ -72,6 +72,22 @@ app.post('/api/login', async (req, res) => {
   res.json({ token });
 });
 
+// Simple proxy to fetch public URLs server-side to avoid CORS issues
+app.get('/api/fetch', async (req, res) => {
+  const url = req.query.url;
+  if (!url || typeof url !== 'string') {
+    return res.status(400).json({ message: 'Missing url parameter' });
+  }
+  try {
+    const response = await fetch(url);
+    const text = await response.text();
+    res.set('Content-Type', 'text/plain').send(text);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Fetch error' });
+  }
+});
+
 app.post('/api/extract', authMiddleware, async (req, res) => {
   const { type, source } = req.body;
   try {
