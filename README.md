@@ -61,6 +61,15 @@ Mindegyik hívás hitelesítést igényel, és a válasz a kinyert nyers szöveg
 
 Ez csak egy minimális kezdeti verzió, a specifikációban szereplő további funkciók még fejlesztésre várnak.
 
+### Tudásbázis import/export
+
+A `POST /api/knowledge/import` végponttal a Q&A párokat JSON formátumban lehet
+feltölteni, amelyet a szerver `server/knowledge.json` fájlban tárol. A
+`GET /api/knowledge/export` végponttal ugyanez a fájl tölthető le, így a
+tudásbázis könnyen másolható vagy archiválható. A
+`POST /api/knowledge/regenerate` csak friss időbélyeget ír a fájlba, ami
+jelezheti, hogy a tartalom megváltozott és újra kell generálni a botot.
+
 ### Válaszstílus profilok
 
 Az alkalmazás 12 beépített stílust kínál, amelyek meghatározzák a chatbot hangvételét:
@@ -85,3 +94,7 @@ Az alkalmazás 12 beépített stílust kínál, amelyek meghatározzák a chatbo
 - `GET /api/fetch?url=...` – URL tartalom letöltése
 - `POST /api/extract` – URL, PDF, DOC/DOCX vagy SQLite forrásból szöveg kinyerése (hitelesítést igényel)
 - `POST /api/chat` – védett chat végpont, minden hívás 1 kreditet von le
+- `POST /api/knowledge/import` – Q&A párok importálása JSON tömbként
+- `GET  /api/knowledge/export` – mentett Q&A párok lekérése
+- `POST /api/knowledge/regenerate` – tudásbázis újragenerálása (időbélyeg frissítése)
+- `POST /api/chat-stream` – streaming válasz (egyszerű példában echo karakterenként)

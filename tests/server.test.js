@@ -10,3 +10,14 @@ test("server exposes extract endpoint", () => {
   const text = fs.readFileSync("./server/server.js", "utf8");
   assert.ok(text.includes("/api/extract"));
 });
+
+test("server exposes knowledge import/export", () => {
+  const text = fs.readFileSync("./server/server.js", "utf8");
+  assert.ok(text.includes('/api/knowledge/import'));
+  assert.ok(text.includes('/api/knowledge/export'));
+});
+
+test('server exposes streaming chat', () => {
+  const text = fs.readFileSync('./server/server.js', 'utf8');
+  assert.ok(text.includes('/api/chat-stream'));
+});

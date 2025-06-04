@@ -127,6 +127,82 @@ app.post('/api/chat', authMiddleware, deductCredit, async (req, res) => {
   res.json({ reply: botReply });
 });
 
+// --- Knowledge base utilities
+const KB_FILE = './server/knowledge.json';
+function loadKnowledge() {
+  if (fs.existsSync(KB_FILE)) {
+    return JSON.parse(fs.readFileSync(KB_FILE, 'utf8'));
+  }
+  return { qaPairs: [], updated: new Date().toISOString() };
+}
+
+function saveKnowledge(data) {
+  fs.writeFileSync(KB_FILE, JSON.stringify(data, null, 2));
+}
+
+// Import Q&A pairs as JSON
+app.post('/api/knowledge/import', authMiddleware, (req, res) => {
+  const { qaPairs } = req.body;
+  if (!Array.isArray(qaPairs)) {
+    return res.status(400).json({ message: 'qaPairs array required' });
+  }
+  const kb = { qaPairs, updated: new Date().toISOString() };
+  try {
+    saveKnowledge(kb);
+    res.json({ ok: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Import error' });
+  }
+});
+
+// Export stored Q&A pairs
+app.get('/api/knowledge/export', authMiddleware, (req, res) => {
+  try {
+    const kb = loadKnowledge();
+    res.json(kb);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Export error' });
+  }
+});
+
+// Regenerate knowledge base timestamp
+app.post('/api/knowledge/regenerate', authMiddleware, (req, res) => {
+  try {
+    const kb = loadKnowledge();
+    kb.updated = new Date().toISOString();
+    saveKnowledge(kb);
+    res.json({ ok: true, updated: kb.updated });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Regenerate error' });
+  }
+});
+
+// Simple streaming chat endpoint (echo)
+app.post('/api/chat-stream', authMiddleware, deductCredit, (req, res) => {
+  const msg = req.body.message || '';
+  res.set({
+    'Content-Type': 'text/event-stream',
+    'Cache-Control': 'no-cache',
+    Connection: 'keep-alive',
+  });
+  let i = 0;
+  function send() {
+    if (i <= msg.length) {
+      const chunk = msg.slice(0, i);
+      res.write(`data: ${chunk}\n\n`);
+      i++;
+      setTimeout(send, 50);
+    } else {
+      res.write('data: [DONE]\n\n');
+      res.end();
+    }
+  }
+  send();
+});
+
 if (process.env.NODE_ENV !== 'test') {
   app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
