@@ -1,0 +1,21 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Express backend for AI Knowledge Assistant",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.3.1",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.3.4",
+    "node-fetch": "^3.3.2",
+    "pdf-parse": "^1.1.1",
+    "mammoth": "^1.4.27",
+    "sqlite3": "^5.1.6"
+  }
+}
