@@ -77,3 +77,11 @@ Az alkalmazás 12 beépített stílust kínál, amelyek meghatározzák a chatbo
 - Egészségügyi tanács
 - IT technikai support
 - Sporttanácsadó
+
+### Backend API végpontok
+
+- `POST /api/register` – felhasználó létrehozása
+- `POST /api/login` – JWT token igénylése
+- `GET /api/fetch?url=...` – URL tartalom letöltése
+- `POST /api/extract` – URL, PDF, DOC/DOCX vagy SQLite forrásból szöveg kinyerése (hitelesítést igényel)
+- `POST /api/chat` – védett chat végpont, minden hívás 1 kreditet von le
