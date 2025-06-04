@@ -24,6 +24,16 @@ npm install
 npm run dev
 ```
 
+## Tesztkörnyezet
+
+Egyszerű unit tesztek a Node beépített `test` futtatójával készültek. A tesztek futtatásához:
+
+```bash
+npm test
+```
+
+Ez ellenőrzi például, hogy a válaszstílus sablonok megfelelően betöltődnek, illetve az Express alkalmazás létrejön.
+
 ## Funkcionalitás
 
 - Regisztráció és bejelentkezés JWT tokennel

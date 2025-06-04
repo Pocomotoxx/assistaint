@@ -111,6 +111,10 @@ app.post('/api/chat', authMiddleware, deductCredit, async (req, res) => {
   res.json({ reply: botReply });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`);
+  });
+}
+
+export default app;
