@@ -6,57 +6,124 @@ export interface ChatbotStylePreset {
 
 export const chatbotStylePresets: ChatbotStylePreset[] = [
   {
-    name: "Jogi",
-    description: "Jogi szakértői stílus, hivatalos és precíz.",
+    name: "Jogi szaknyelv",
+    description: "Precíz, formális, jogszabályokra épít.",
     parameters: {
       tone: "formal",
       persona: "lawyer",
       response_length: "detailed",
-      temperature: 0.3, // Example parameter: lower temperature for more deterministic, factual responses
+      temperature: 0.3,
     },
   },
   {
-    name: "Oktatói",
-    description: "Oktató jellegű stílus, informatív és segítőkész.",
+    name: "Oktatói magyarázó",
+    description: "Egyszerű, példákkal magyarázó.",
     parameters: {
       tone: "informative",
       persona: "educator",
       response_length: "medium",
-      encourage_questions: true, // Example parameter
+      encourage_questions: true,
       temperature: 0.5,
     },
   },
   {
-    name: "Marketing",
-    description: "Marketing fókuszú stílus, meggyőző és figyelemfelkeltő.",
+    name: "Tudományos",
+    description: "Objektív, hivatkozás-alapú stílus.",
     parameters: {
-      tone: "persuasive",
-      persona: "marketer",
-      response_length: "concise",
-      call_to_action: "inquire_more", // Example parameter
-      temperature: 0.7, // Example parameter: higher temperature for more creative/persuasive responses
+      tone: "objective",
+      persona: "scientist",
+      response_length: "detailed",
+      temperature: 0.4,
     },
   },
   {
-    name: "Barátságos",
-    description: "Közvetlen és barátságos stílus.",
+    name: "Startup pitch",
+    description: "Probléma-megoldás fókuszú.",
     parameters: {
-      tone: "friendly",
-      persona: "helpful_assistant",
+      tone: "persuasive",
+      persona: "startup_enthusiast",
+      response_length: "concise",
+      temperature: 0.7,
+    },
+  },
+  {
+    name: "Ügyfélszolgálati",
+    description: "Udvarias, empatikus.",
+    parameters: {
+      tone: "polite",
+      persona: "support_agent",
       response_length: "medium",
-      use_emojis: true,
+      temperature: 0.5,
+    },
+  },
+  {
+    name: "Motivációs tréner",
+    description: "Inspiráló, támogató stílus.",
+    parameters: {
+      tone: "encouraging",
+      persona: "coach",
+      response_length: "medium",
       temperature: 0.6,
     },
   },
   {
-    name: "Humoros",
-    description: "Könnyed és humoros válaszadási stílus.",
+    name: "Politikai elemző",
+    description: "Több nézőpontot bemutató.",
     parameters: {
-      tone: "humorous",
-      persona: "comedian_assistant",
-      response_length: "short_to_medium",
-      humor_level: "moderate", // Example parameter
-      temperature: 0.8,
+      tone: "analytical",
+      persona: "political_analyst",
+      response_length: "detailed",
+      temperature: 0.5,
+    },
+  },
+  {
+    name: "HR szakértő",
+    description: "Korrekt, visszajelző stílus.",
+    parameters: {
+      tone: "professional",
+      persona: "hr_expert",
+      response_length: "medium",
+      temperature: 0.5,
+    },
+  },
+  {
+    name: "Marketing szövegíró",
+    description: "CTA-kal záró, figyelemfelkeltő.",
+    parameters: {
+      tone: "persuasive",
+      persona: "copywriter",
+      response_length: "concise",
+      temperature: 0.7,
+    },
+  },
+  {
+    name: "Egészségügyi tanács",
+    description: "Laikus számára érthető.",
+    parameters: {
+      tone: "informative",
+      persona: "health_advisor",
+      response_length: "medium",
+      temperature: 0.4,
+    },
+  },
+  {
+    name: "IT technikai support",
+    description: "Lépésenkénti, gyakorlati.",
+    parameters: {
+      tone: "technical",
+      persona: "it_support",
+      response_length: "detailed",
+      temperature: 0.4,
+    },
+  },
+  {
+    name: "Sporttanácsadó",
+    description: "Edzéstervek, életmódtippek, motiváció.",
+    parameters: {
+      tone: "motivational",
+      persona: "sports_coach",
+      response_length: "medium",
+      temperature: 0.6,
     },
   },
 ];
